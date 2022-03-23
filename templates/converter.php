@@ -51,7 +51,8 @@ jQuery(document).ready(function(){
         let convert_from = jQuery('#convert_from').val();
         let convert_to = jQuery('#convert_to').val();
         let converted_amount = jQuery('#converted_amount');
-        jQuery.get('?cmcaction=convert', {
+        jQuery.get('<?php echo get_permalink() ?>', {
+            cmcaction: 'convert',
             convert_from: convert_from,
             convert_to: convert_to,
             amount: amount
@@ -61,7 +62,7 @@ jQuery(document).ready(function(){
     }
     
     function getHistory() {
-        jQuery.get('?cmcaction=get_history', function(response) {
+        jQuery.get('<?php echo get_permalink() ?>', {cmcaction: 'get_history'}, function(response) {
             jQuery('#left_recently_converted').html('<ul></ul>');
             jQuery('#right_recently_converted').html('<ul></ul>');
             console.log(response);

@@ -50,6 +50,7 @@ class CmcBaseController {
     }
     
     public function jsonify($data) {
+        ob_end_clean();
         header('Content-Type: application/json');
         echo json_encode($data);
         exit();

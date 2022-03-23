@@ -64,3 +64,13 @@ if (!wp_next_scheduled('cmc_cron_worker_start')) {
     wp_schedule_event(time(), 'cmc_cron_worker_interval', 'cmc_cron_worker_start_hook');
 }
 add_action('cmc_cron_worker_start_hook', 'cmc_cron_worker_start');
+
+// added output buffering because some WP themes 
+// does not did by themselves
+// this is needed for AJAX output
+// I'll not like to use /wp-admin/admin-ajax.php
+// because of security, I think regular customer
+// must hawe restriction to access to any admin URL
+add_action('init', function(){
+    ob_start();
+});
